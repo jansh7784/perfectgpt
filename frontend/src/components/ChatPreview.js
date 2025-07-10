@@ -21,7 +21,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
             <div className={`inline-block max-w-full px-4 py-3 rounded-2xl ${
               isUser 
                 ? "bg-blue-500 text-white" 
-                : "bg-gray-100 text-gray-900 border border-gray-200"
+                : "bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-500"
             }`}>
               <p className="text-sm whitespace-pre-wrap break-words">{message.message}</p>
             </div>
@@ -32,15 +32,15 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-colors duration-200">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-gray-900">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           📱 Preview
         </h2>
         <button
           onClick={downloadConversation}
           disabled={conversations.length === 0}
-          className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-medium text-sm"
+          className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors font-medium text-sm"
         >
           📸 Download Image
         </button>
@@ -49,27 +49,27 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
       {/* ChatGPT-style Interface */}
       <div 
         id="chat-preview"
-        className="bg-white border-2 border-gray-200 rounded-lg overflow-hidden"
+        className="bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden transition-colors duration-200"
       >
         {/* ChatGPT Header */}
-        <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
+        <div className="bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600 px-4 py-3 transition-colors duration-200">
           <div className="flex items-center">
             <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">
               AI
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-900">ChatGPT</h3>
-              <p className="text-xs text-gray-500">AI Assistant</p>
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white">ChatGPT</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400">AI Assistant</p>
             </div>
           </div>
         </div>
         
         {/* Messages Container */}
-        <div className="p-4 bg-white min-h-[400px] max-h-[600px] overflow-y-auto">
+        <div className="p-4 bg-white dark:bg-gray-800 min-h-[400px] max-h-[600px] overflow-y-auto transition-colors duration-200">
           {conversations.length === 0 ? (
-            <div className="flex items-center justify-center h-full text-gray-500">
+            <div className="flex items-center justify-center h-full text-gray-500 dark:text-gray-400">
               <div className="text-center">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors duration-200">
                   <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
                     AI
                   </div>
@@ -92,15 +92,15 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         </div>
         
         {/* ChatGPT Input Bar (Static) */}
-        <div className="bg-gray-50 border-t border-gray-200 px-4 py-3">
-          <div className="flex items-center bg-white border border-gray-300 rounded-lg px-3 py-2">
+        <div className="bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-600 px-4 py-3 transition-colors duration-200">
+          <div className="flex items-center bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg px-3 py-2 transition-colors duration-200">
             <input
               type="text"
               placeholder="Message ChatGPT..."
-              className="flex-1 text-sm text-gray-400 bg-transparent outline-none"
+              className="flex-1 text-sm text-gray-400 dark:text-gray-500 bg-transparent outline-none"
               readOnly
             />
-            <button className="ml-2 p-1 text-gray-400">
+            <button className="ml-2 p-1 text-gray-400 dark:text-gray-500">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
               </svg>
@@ -109,7 +109,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         </div>
       </div>
       
-      <div className="mt-4 text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">
+      <div className="mt-4 text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 p-3 rounded-lg transition-colors duration-200">
         <div className="flex justify-between items-center">
           <span>Messages: {conversations.length}</span>
           <span>🔥 Realistic ChatGPT interface</span>
