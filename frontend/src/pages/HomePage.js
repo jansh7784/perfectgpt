@@ -28,20 +28,43 @@ const HomePage = () => {
   };
 
   const downloadConversationImage = async () => {
-    const html2canvas = (await import('html2canvas')).default;
-    const element = document.getElementById('chat-preview');
-    if (element) {
-      const canvas = await html2canvas(element, {
-        backgroundColor: document.documentElement.classList.contains('dark') ? '#1f2937' : '#ffffff',
-        scale: 2,
-        useCORS: true,
-        allowTaint: true
-      });
-      
-      const link = document.createElement('a');
-      link.download = 'fake-chatgpt-conversation.png';
-      link.href = canvas.toDataURL();
-      link.click();
+    try {
+      const html2canvas = (await import('html2canvas')).default;
+      const element = document.getElementById('chat-preview');
+      if (element) {
+        // Show loading state
+        const downloadBtn = document.querySelector('button:has-text("📸 Download Image")');
+        if (downloadBtn) {
+          downloadBtn.textContent = 'Generating...';
+          downloadBtn.disabled = true;
+        }
+
+        const canvas = await html2canvas(element, {
+          backgroundColor: document.documentElement.classList.contains('dark') ? '#1f2937' : '#ffffff',
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          height: element.scrollHeight,
+          width: element.scrollWidth
+        });
+        
+        const link = document.createElement('a');
+        link.download = `fake-chatgpt-conversation-${Date.now()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Reset button state
+        if (downloadBtn) {
+          downloadBtn.textContent = '📸 Download Image';
+          downloadBtn.disabled = false;
+        }
+      }
+    } catch (error) {
+      console.error('Error generating screenshot:', error);
+      alert('Error generating screenshot. Please try again.');
     }
   };
 
