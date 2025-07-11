@@ -186,134 +186,61 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
     try {
       const html2canvas = (await import('html2canvas')).default;
       const element = document.getElementById('chat-preview-container');
-      const messagesContainer = document.getElementById('chat-messages');
       
-      if (element && messagesContainer) {
-        // Show loading state
-        const downloadBtn = document.querySelector('.download-btn');
-        if (downloadBtn) {
-          downloadBtn.textContent = 'Generating...';
-          downloadBtn.disabled = true;
-        }
+      if (!element) {
+        throw new Error('Chat preview container not found');
+      }
 
-        // Force scroll to top to capture all messages
-        messagesContainer.scrollTop = 0;
-        await new Promise(resolve => setTimeout(resolve, 300));
+      // Show loading state
+      const downloadBtn = document.querySelector('.download-btn');
+      if (downloadBtn) {
+        downloadBtn.textContent = 'Generating...';
+        downloadBtn.disabled = true;
+      }
 
-        // Temporarily adjust styles for better screenshot
-        const originalStyles = {
-          element: {
-            overflow: element.style.overflow,
-            height: element.style.height,
-            minHeight: element.style.minHeight,
-            maxHeight: element.style.maxHeight
-          },
-          messages: {
-            overflow: messagesContainer.style.overflow,
-            height: messagesContainer.style.height,
-            maxHeight: messagesContainer.style.maxHeight
-          }
-        };
-        
-        // Set styles to show all content
-        element.style.overflow = 'visible';
-        element.style.height = 'auto';
-        element.style.minHeight = 'auto';
-        element.style.maxHeight = 'none';
-        
-        messagesContainer.style.overflow = 'visible';
-        messagesContainer.style.height = 'auto';
-        messagesContainer.style.maxHeight = 'none';
+      // Wait a moment for any pending renders
+      await new Promise(resolve => setTimeout(resolve, 100));
 
-        // Wait for layout to settle
-        await new Promise(resolve => setTimeout(resolve, 500));
-
-        // Get the full height of content
-        const fullHeight = element.scrollHeight;
-        const fullWidth = element.scrollWidth;
-        
-        // High-quality screenshot configuration
+      try {
+        // Simple, reliable screenshot configuration
         const canvas = await html2canvas(element, {
           backgroundColor: isLightMode ? '#ffffff' : '#212121',
-          scale: 2,
+          scale: 1,
           useCORS: true,
           allowTaint: false,
           logging: false,
-          foreignObjectRendering: true,
-          imageTimeout: 15000,
-          height: fullHeight,
-          width: fullWidth,
-          scrollX: 0,
-          scrollY: 0,
-          windowWidth: fullWidth,
-          windowHeight: fullHeight,
-          onclone: (clonedDoc) => {
-            // Ensure all messages are visible in the clone
-            const clonedMessages = clonedDoc.getElementById('chat-messages');
-            const clonedElement = clonedDoc.getElementById('chat-preview-container');
-            if (clonedMessages) {
-              clonedMessages.style.overflow = 'visible';
-              clonedMessages.style.height = 'auto';
-              clonedMessages.style.maxHeight = 'none';
-              clonedMessages.style.backgroundColor = isLightMode ? '#ffffff' : '#212121';
-            }
-            if (clonedElement) {
-              clonedElement.style.backgroundColor = isLightMode ? '#ffffff' : '#212121';
-              clonedElement.style.overflow = 'visible';
-              clonedElement.style.height = 'auto';
-            }
-            
-            // Ensure all text is visible with proper colors
-            const allElements = clonedDoc.querySelectorAll('*');
-            allElements.forEach(el => {
-              if (el.style.visibility === 'hidden') {
-                el.style.visibility = 'visible';
-              }
-              if (el.style.display === 'none') {
-                el.style.display = 'block';
-              }
-            });
-          }
+          width: element.offsetWidth,
+          height: element.offsetHeight
         });
         
-        // Restore original styles
-        Object.keys(originalStyles.element).forEach(key => {
-          element.style[key] = originalStyles.element[key];
-        });
-        Object.keys(originalStyles.messages).forEach(key => {
-          messagesContainer.style[key] = originalStyles.messages[key];
-        });
+        // Convert to JPG and download
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+        const link = document.createElement('a');
+        link.download = 'convo.jpg';
+        link.href = dataUrl;
         
-        // Create high-quality JPG download
-        try {
-          const dataUrl = canvas.toDataURL('image/jpeg', 0.95); // JPG format with 95% quality
-          const link = document.createElement('a');
-          link.download = `chatgpt-conversation-${new Date().toISOString().split('T')[0]}.jpg`;
-          link.href = dataUrl;
-          
-          // Force download
-          link.style.display = 'none';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          
-          console.log('Screenshot downloaded successfully as JPG!');
-        } catch (downloadError) {
-          console.error('Error creating download link:', downloadError);
-          throw new Error('Failed to create download link');
-        }
-
-        // Reset button state
-        if (downloadBtn) {
-          downloadBtn.textContent = 'Download ChatGPT Screenshot';
-          downloadBtn.disabled = false;
-        }
-      } else {
-        throw new Error('Chat container not found');
+        // Trigger download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        console.log('Screenshot downloaded as convo.jpg');
+        
+      } catch (canvasError) {
+        console.error('Canvas error:', canvasError);
+        throw new Error('Failed to generate screenshot');
       }
+
+      // Reset button state
+      if (downloadBtn) {
+        downloadBtn.textContent = 'Download ChatGPT Screenshot';
+        downloadBtn.disabled = false;
+      }
+      
     } catch (error) {
-      console.error('Error generating screenshot:', error);
+      console.error('Download error:', error);
       alert('Error generating screenshot. Please try again.');
+      
       // Reset button state
       const downloadBtn = document.querySelector('.download-btn');
       if (downloadBtn) {
