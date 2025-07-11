@@ -380,7 +380,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           <div 
             id="chat-messages"
             className={`flex-1 overflow-y-auto py-4 custom-scrollbar ${
-              isLightMode ? 'bg-white' : 'bg-gray-800'
+              isLightMode ? 'bg-white' : 'bg-[#343541]'
             }`}
             style={{ height: '400px', maxHeight: '400px' }}
           >
