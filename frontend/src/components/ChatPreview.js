@@ -74,6 +74,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         </div>
       );
     } else {
+      // ChatGPT message - left side with avatar and action buttons
       return (
         <div className="flex items-start space-x-3 mb-4 group">
           <ChatGPTIcon />
@@ -100,7 +101,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                             ? 'bg-gray-200 text-gray-800' 
                             : 'bg-gray-700 text-gray-200'
                         }`}>{children}</code> :
-                        <pre className={`p-2 rounded text-xs overflow-x-auto ${
+                        <pre className={`p-2 rounded text-xs overflow-x-auto my-2 ${
                           isLightMode 
                             ? 'bg-gray-200 text-gray-800' 
                             : 'bg-gray-700 text-gray-200'
@@ -117,7 +118,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                 </ReactMarkdown>
               </div>
             </div>
-            {/* Simple Action buttons - only show on hover */}
+            {/* Action buttons - only show on hover */}
             <div className="flex items-center space-x-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <button 
                 onClick={() => copyToClipboard(message.message, messageId)}
