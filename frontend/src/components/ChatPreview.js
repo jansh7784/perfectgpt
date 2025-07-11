@@ -435,82 +435,94 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
 
           {/* Input Section - Exact ChatGPT.com UI */}
           {showInputSection && (
-            <div className={`border-t px-4 py-3 ${
+            <div className={`border-t px-4 py-4 ${
               isLightMode 
                 ? 'bg-gray-50 border-gray-200' 
                 : 'bg-[#212121] border-white border-opacity-20'
             }`}>
-              <div className={`flex items-center space-x-2 mb-2 p-3 rounded-xl border ${
+              <div className={`flex items-center gap-3 p-3 rounded-3xl ${
                 isLightMode 
-                  ? 'bg-white border-gray-300' 
-                  : 'bg-[#40414f] border-gray-600'
+                  ? 'bg-gray-100 border border-gray-300' 
+                  : 'bg-[#2f2f2f] border border-gray-600'
               }`}>
-                {/* Attach file button */}
-                <button 
-                  className="p-2 hover:bg-gray-600 rounded transition-colors"
-                  title="Attach file"
-                  onClick={() => alert('Attach file clicked')}
-                >
-                  <svg className="w-5 h-5 text-gray-400 hover:text-white" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M16.5 6.5L7.5 15.5c-1.38 1.38-1.38 3.62 0 5s3.62 1.38 5 0l6-6c.78-.78.78-2.05 0-2.83-.78-.78-2.05-.78-2.83 0l-5 5c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.29-4.29"/>
-                  </svg>
-                </button>
-                
-                {/* Search button */}
-                <button 
-                  className="p-2 hover:bg-gray-600 rounded transition-colors"
-                  title="Search"
-                  onClick={() => alert('Search clicked')}
-                >
-                  <svg className="w-5 h-5 text-gray-400 hover:text-white" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.5 19l-4.99-5zm-6 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5 15 7.01 15 9.5 12.99 14 10.5 14z"/>
-                  </svg>
-                </button>
+                {/* Left side buttons */}
+                <div className="flex items-center gap-2">
+                  {/* Attach button */}
+                  <button 
+                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      isLightMode 
+                        ? 'text-gray-600 hover:bg-gray-200' 
+                        : 'text-gray-300 hover:bg-gray-600'
+                    }`}
+                    onClick={() => alert('Attach file clicked')}
+                  >
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M16.5 6.5L7.5 15.5c-1.38 1.38-1.38 3.62 0 5s3.62 1.38 5 0l6-6c.78-.78.78-2.05 0-2.83-.78-.78-2.05-.78-2.83 0l-5 5c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.29-4.29"/>
+                    </svg>
+                    <span>Attach</span>
+                  </button>
+                  
+                  {/* Search button */}
+                  <button 
+                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      isLightMode 
+                        ? 'text-gray-600 hover:bg-gray-200' 
+                        : 'text-gray-300 hover:bg-gray-600'
+                    }`}
+                    onClick={() => alert('Search clicked')}
+                  >
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.5 19l-4.99-5zm-6 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5 15 7.01 15 9.5 12.99 14 10.5 14z"/>
+                    </svg>
+                    <span>Search</span>
+                  </button>
+                </div>
                 
                 {/* Textarea */}
                 <textarea
-                  placeholder="Ask anything..."
-                  className={`flex-1 resize-none bg-transparent border-none text-white text-base outline-none leading-relaxed min-h-[40px] max-h-[120px] ${
+                  placeholder="Ask anything"
+                  className={`flex-1 resize-none bg-transparent border-none text-base outline-none leading-relaxed min-h-[24px] max-h-[120px] py-1 ${
                     isLightMode ? 'text-gray-900 placeholder-gray-500' : 'text-white placeholder-gray-400'
                   }`}
                   style={{ 
-                    minHeight: '40px',
+                    minHeight: '24px',
                     maxHeight: '120px',
-                    lineHeight: '1.3'
+                    lineHeight: '1.4'
                   }}
                   onKeyDown={(e) => {
                     if (!e.shiftKey && e.key === 'Enter') {
                       e.preventDefault();
-                      console.log('Message sent:', e.target.value);
-                      e.target.value = '';
+                      const text = e.target.value.trim();
+                      if (text) {
+                        console.log('Message sent:', text);
+                        e.target.value = '';
+                      }
                     }
                   }}
                 />
                 
-                {/* Send button */}
+                {/* Voice button */}
                 <button 
-                  className="p-2 hover:bg-gray-600 rounded transition-colors"
-                  title="Send"
-                  onClick={(e) => {
-                    const textarea = e.target.closest('.flex').querySelector('textarea');
-                    const text = textarea.value.trim();
-                    if (!text) return;
-                    console.log('Sent:', text);
-                    textarea.value = '';
-                  }}
+                  className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isLightMode 
+                      ? 'text-gray-600 hover:bg-gray-200' 
+                      : 'text-gray-300 hover:bg-gray-600'
+                  }`}
+                  onClick={() => alert('Voice clicked')}
                 >
-                  <svg className="w-5 h-5 text-gray-400 hover:text-white transform -rotate-45" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
                   </svg>
+                  <span>Voice</span>
                 </button>
               </div>
               
               {/* Disclaimer */}
-              <div className="text-center">
+              <div className="text-center mt-3">
                 <p className={`text-xs ${
                   isLightMode ? 'text-gray-500' : 'text-gray-400'
                 }`}>
-                  ChatGPT can make mistakes. Check important info.
+                  ChatGPT can make mistakes. Check important info. See Cookie Preferences.
                 </p>
               </div>
             </div>
