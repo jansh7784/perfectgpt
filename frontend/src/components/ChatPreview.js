@@ -389,14 +389,6 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           </button>
         </div>
       </div>
-
-      {/* Tooltips */}
-      <Tooltip id="copy-tooltip" place="top" />
-      <Tooltip id="thumbs-up-tooltip" place="top" />
-      <Tooltip id="thumbs-down-tooltip" place="top" />
-      <Tooltip id="retry-tooltip" place="top" />
-      <Tooltip id="attach-tooltip" place="top" />
-      <Tooltip id="send-tooltip" place="top" />
     </div>
   );
 };
