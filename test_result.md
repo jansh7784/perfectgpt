@@ -139,7 +139,7 @@
   - task: "ChatGPT UI improvements to match ChatGPT.com exactly"
     implemented: true
     working: true
-    file: "frontend/src/components/ChatPreview.js, frontend/src/index.css"
+    file: "frontend/src/components/ChatPreview.js, frontend/src/components/ChatEditor.js"
     stuck_count: 0
     priority: "high"
     needs_retesting: false
@@ -150,6 +150,9 @@
         - working: true
           agent: "testing"
           comment: "COMPREHENSIVE UI TESTING COMPLETED ✅ All ChatGPT UI improvements verified: ✅ User messages are perfectly oval/pill-shaped (rounded-3xl) ✅ ChatGPT responses have proper rounded-2xl styling with green gradient icons ✅ Traffic light window controls (red, yellow, green) working ✅ ChatGPT header visible in preview ✅ Proper message spacing and layout matches ChatGPT.com ✅ Input section with 'Ask anything' placeholder and disclaimer 'ChatGPT can make mistakes' ✅ Light/dark mode toggle functional ✅ Auto-scroll behavior working correctly ✅ Show input section checkbox toggle working. UI perfectly replicates ChatGPT.com appearance."
+        - working: true
+          agent: "main"
+          comment: "UPDATED UI TO MATCH EXACT CHATGPT INTERFACE: ✅ Removed Mac-style traffic lights from header ✅ Centered 'ChatGPT' title with sidebar (3 lines) on left and edit icon on right ✅ Fixed spacing issues in ChatGPT messages (reduced blank space) ✅ Removed Tools button from input section to match ChatGPT.com exactly ✅ Made both preview and edit sections properly scrollable ✅ Input section now matches ChatGPT.com design perfectly ✅ Tested with example conversation 'What's the best product on earth?' / 'It's fakechatgpt.com, of course!' - works perfectly. UI now matches the provided screenshot exactly."
 
   - task: "Screenshot download quality enhancement"
     implemented: true
