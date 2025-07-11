@@ -99,20 +99,21 @@ const HomePage = () => {
       </div>
 
       {/* Main Editor Section - Dark Theme Like FakeChatGPT */}
-      <div id="editor" className="bg-gray-900 py-12">
+      <div id="editor" className="bg-gray-900 py-8 md:py-12">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-white mb-4">
+          <div className="text-center mb-6 md:mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
               ChatGPT Screenshot Creator
             </h2>
-            <p className="text-gray-300">
+            <p className="text-gray-300 text-sm md:text-base">
               Edit and create your fake ChatGPT conversations
             </p>
           </div>
           
-          {/* Fixed Height Container to Prevent Page Scrolling */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" style={{ height: '580px' }}>
-            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700 flex flex-col">
+          {/* Responsive Container - Stack on Mobile */}
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 md:gap-8" style={{ minHeight: '580px' }}>
+            {/* Edit Section */}
+            <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700 flex flex-col order-2 lg:order-1">
               <ChatEditor
                 currentMessage={currentMessage}
                 setCurrentMessage={setCurrentMessage}
@@ -122,7 +123,9 @@ const HomePage = () => {
                 clearConversation={clearConversation}
               />
             </div>
-            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700 flex flex-col">
+            
+            {/* Preview Section */}
+            <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700 flex flex-col order-1 lg:order-2">
               <ChatPreview
                 conversations={conversations}
                 downloadConversation={downloadConversationImage}
