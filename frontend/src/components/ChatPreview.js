@@ -379,7 +379,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           {/* Messages - Scrollable Area with ChatGPT.com exact spacing */}
           <div 
             id="chat-messages"
-            className={`flex-1 overflow-y-auto py-6 custom-scrollbar ${
+            className={`flex-1 overflow-y-auto py-4 custom-scrollbar ${
               isLightMode ? 'bg-white' : 'bg-gray-800'
             }`}
             style={{ height: '400px', maxHeight: '400px' }}
