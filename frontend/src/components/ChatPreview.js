@@ -74,15 +74,15 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         </div>
       );
     } else {
-      // ChatGPT message - left side with avatar and action buttons, compact spacing like ChatGPT.com
+      // ChatGPT message - left side with avatar and action buttons, proper alignment like ChatGPT.com
       return (
-        <div className="flex items-start space-x-3 mb-6 px-4 group">
+        <div className="flex items-start space-x-3 mb-4 px-4 group">
           <ChatGPTIcon />
           <div className="flex-1 max-w-none">
-            <div className={`rounded-2xl px-4 py-3 ${
+            <div className={`rounded-2xl px-4 py-3 inline-block max-w-[85%] ${
               isLightMode 
                 ? 'bg-gray-100 text-gray-900' 
-                : 'bg-gray-800 text-white'
+                : 'bg-[#444654] text-white'
             }`}>
               <div className="text-sm leading-relaxed">
                 <ReactMarkdown 
