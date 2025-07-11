@@ -38,11 +38,11 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
     const messageId = message.id || index;
     
     if (isUser) {
-      // User message - right side, no avatar, plain bubble
+      // User message - right side, oval/pill-shaped bubble like ChatGPT.com
       return (
-        <div className="flex justify-end mb-4">
+        <div className="flex justify-end mb-6 px-4">
           <div className="max-w-xs lg:max-w-md xl:max-w-lg">
-            <div className={`rounded-lg px-4 py-2 ${
+            <div className={`rounded-3xl px-6 py-3 ${
               isLightMode 
                 ? 'bg-blue-500 text-white' 
                 : 'bg-gray-700 text-white'
@@ -74,12 +74,12 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         </div>
       );
     } else {
-      // ChatGPT message - left side with avatar and action buttons
+      // ChatGPT message - left side with avatar and action buttons, exact ChatGPT.com style
       return (
-        <div className="flex items-start space-x-3 mb-4 group">
+        <div className="flex items-start space-x-4 mb-6 px-4 group">
           <ChatGPTIcon />
           <div className="flex-1 max-w-none">
-            <div className={`rounded-lg px-4 py-2 ${
+            <div className={`rounded-2xl px-4 py-3 ${
               isLightMode 
                 ? 'bg-gray-100 text-gray-900' 
                 : 'bg-gray-800 text-white'
@@ -118,11 +118,15 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                 </ReactMarkdown>
               </div>
             </div>
-            {/* Action buttons - only show on hover */}
-            <div className="flex items-center space-x-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            {/* Action buttons - only show on hover, ChatGPT.com style */}
+            <div className="flex items-center space-x-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <button 
                 onClick={() => copyToClipboard(message.message, messageId)}
-                className="w-7 h-7 rounded hover:bg-gray-600 flex items-center justify-center"
+                className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                  isLightMode 
+                    ? 'hover:bg-gray-200' 
+                    : 'hover:bg-gray-700'
+                }`}
                 title={copiedMessageId === messageId ? "Copied!" : "Copy"}
               >
                 {copiedMessageId === messageId ? (
@@ -136,7 +140,11 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                 )}
               </button>
               <button 
-                className="w-7 h-7 rounded hover:bg-gray-600 flex items-center justify-center"
+                className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                  isLightMode 
+                    ? 'hover:bg-gray-200' 
+                    : 'hover:bg-gray-700'
+                }`}
                 title="Good response"
               >
                 <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,7 +152,11 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                 </svg>
               </button>
               <button 
-                className="w-7 h-7 rounded hover:bg-gray-600 flex items-center justify-center"
+                className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                  isLightMode 
+                    ? 'hover:bg-gray-200' 
+                    : 'hover:bg-gray-700'
+                }`}
                 title="Bad response"
               >
                 <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -152,7 +164,11 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                 </svg>
               </button>
               <button 
-                className="w-7 h-7 rounded hover:bg-gray-600 flex items-center justify-center"
+                className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                  isLightMode 
+                    ? 'hover:bg-gray-200' 
+                    : 'hover:bg-gray-700'
+                }`}
                 title="Regenerate"
               >
                 <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
