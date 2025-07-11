@@ -14,9 +14,6 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <Link to="/" className="flex items-center">
-            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">
-              AI
-            </div>
             <h1 className="text-xl font-bold text-gray-900 dark:text-white">
               Fake ChatGPT Generator
             </h1>
