@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Tooltip } from 'react-tooltip';
 
 const ChatPreview = ({ conversations, downloadConversation }) => {
   const [isLightMode, setIsLightMode] = useState(false);
-  const [showInputSection, setShowInputSection] = useState(false);
+  const [showInputSection, setShowInputSection] = useState(true);
+  const [copiedMessageId, setCopiedMessageId] = useState(null);
 
   // Auto-scroll to bottom when new messages are added
   useEffect(() => {
