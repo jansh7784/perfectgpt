@@ -74,9 +74,9 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         </div>
       );
     } else {
-      // ChatGPT message - left side with avatar and action buttons, minimal spacing
+      // ChatGPT message - left side with avatar and action buttons, minimal spacing like ChatGPT.com
       return (
-        <div className="flex items-start space-x-3 mb-4 px-4 group">
+        <div className="flex items-start space-x-2 mb-4 px-4 group">
           <ChatGPTIcon />
           <div className="flex-1 max-w-none">
             <div className={`rounded-2xl px-4 py-2 ${
