@@ -115,23 +115,73 @@ const HomePage = () => {
           {/* Responsive Container - Stack on Mobile */}
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 md:gap-8" style={{ minHeight: '580px' }}>
             {/* Edit Section */}
-            <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700 flex flex-col order-2 lg:order-1">
-              <ChatEditor
-                currentMessage={currentMessage}
-                setCurrentMessage={setCurrentMessage}
-                currentSender={currentSender}
-                setCurrentSender={setCurrentSender}
-                addMessage={addMessage}
-                clearConversation={clearConversation}
-              />
+            <div className="bg-gray-800 rounded-lg border border-gray-700 flex flex-col order-2 lg:order-1">
+              {/* Edit Header with Dropdown */}
+              <div 
+                className="flex items-center justify-between p-4 md:p-6 cursor-pointer hover:bg-gray-700 transition-colors"
+                onClick={() => setIsEditExpanded(!isEditExpanded)}
+              >
+                <h2 className="text-lg md:text-xl font-semibold text-white">Edit</h2>
+                <svg 
+                  className={`w-5 h-5 text-gray-400 transition-transform ${isEditExpanded ? 'rotate-180' : ''}`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              
+              {/* Edit Content - Collapsible */}
+              <div className={`transition-all duration-300 overflow-hidden ${
+                isEditExpanded ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+              }`}>
+                <div className="px-4 md:px-6 pb-4 md:pb-6">
+                  <div className="h-full overflow-y-auto max-h-[500px] custom-scrollbar">
+                    <ChatEditor
+                      currentMessage={currentMessage}
+                      setCurrentMessage={setCurrentMessage}
+                      currentSender={currentSender}
+                      setCurrentSender={setCurrentSender}
+                      addMessage={addMessage}
+                      clearConversation={clearConversation}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             
             {/* Preview Section */}
-            <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700 flex flex-col order-1 lg:order-2">
-              <ChatPreview
-                conversations={conversations}
-                downloadConversation={downloadConversationImage}
-              />
+            <div className="bg-gray-800 rounded-lg border border-gray-700 flex flex-col order-1 lg:order-2">
+              {/* Preview Header with Dropdown */}
+              <div 
+                className="flex items-center justify-between p-4 md:p-6 cursor-pointer hover:bg-gray-700 transition-colors"
+                onClick={() => setIsPreviewExpanded(!isPreviewExpanded)}
+              >
+                <h2 className="text-lg md:text-xl font-semibold text-white">Preview</h2>
+                <svg 
+                  className={`w-5 h-5 text-gray-400 transition-transform ${isPreviewExpanded ? 'rotate-180' : ''}`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              
+              {/* Preview Content - Collapsible */}
+              <div className={`transition-all duration-300 overflow-hidden ${
+                isPreviewExpanded ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+              }`}>
+                <div className="px-4 md:px-6 pb-4 md:pb-6">
+                  <div className="h-full overflow-y-auto max-h-[500px] custom-scrollbar">
+                    <ChatPreview
+                      conversations={conversations}
+                      downloadConversation={downloadConversationImage}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
