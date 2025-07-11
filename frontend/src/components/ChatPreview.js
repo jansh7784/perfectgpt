@@ -328,41 +328,13 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           >
             {conversations.length === 0 ? (
               <div className="flex items-center justify-center h-full">
-                <div className="text-center max-w-md mx-auto">
-                  <div className="mb-6">
-                    <ChatGPTIcon />
-                  </div>
-                  <h3 className={`text-2xl font-semibold mb-4 ${
+                <div className="text-center">
+                  <ChatGPTIcon />
+                  <p className={`text-xl font-medium mt-4 ${
                     isLightMode ? 'text-gray-900' : 'text-white'
                   }`}>
                     How can I help you today?
-                  </h3>
-                  <div className="grid grid-cols-1 gap-3 text-sm">
-                    <div className={`p-3 rounded-lg border cursor-pointer hover:bg-gray-50 transition-colors ${
-                      isLightMode 
-                        ? 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100' 
-                        : 'bg-gray-700 border-gray-600 text-gray-300 hover:bg-gray-600'
-                    }`}>
-                      <div className="font-medium">Create a study schedule</div>
-                      <div className="text-xs opacity-75">for a college student</div>
-                    </div>
-                    <div className={`p-3 rounded-lg border cursor-pointer hover:bg-gray-50 transition-colors ${
-                      isLightMode 
-                        ? 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100' 
-                        : 'bg-gray-700 border-gray-600 text-gray-300 hover:bg-gray-600'
-                    }`}>
-                      <div className="font-medium">Explain quantum computing</div>
-                      <div className="text-xs opacity-75">in simple terms</div>
-                    </div>
-                    <div className={`p-3 rounded-lg border cursor-pointer hover:bg-gray-50 transition-colors ${
-                      isLightMode 
-                        ? 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100' 
-                        : 'bg-gray-700 border-gray-600 text-gray-300 hover:bg-gray-600'
-                    }`}>
-                      <div className="font-medium">Plan a vacation</div>
-                      <div className="text-xs opacity-75">to Tokyo, Japan</div>
-                    </div>
-                  </div>
+                  </p>
                 </div>
               </div>
             ) : (
