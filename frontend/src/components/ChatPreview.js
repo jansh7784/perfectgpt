@@ -429,7 +429,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
             <div className={`border-t px-4 py-3 ${
               isLightMode 
                 ? 'bg-gray-50 border-gray-200' 
-                : 'bg-[#40414f] border-gray-600'
+                : 'bg-[#212121] border-white border-opacity-20'
             }`}>
               <div className="flex items-center space-x-2 mb-2">
                 {/* Plus button */}
