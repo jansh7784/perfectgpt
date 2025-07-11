@@ -82,7 +82,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
             <div className={`rounded-2xl px-4 py-3 inline-block max-w-[85%] ${
               isLightMode 
                 ? 'bg-gray-100 text-gray-900' 
-                : 'bg-[#444654] text-white'
+                : 'bg-[#2f2f2f] text-white'
             }`}>
               <div className="text-sm leading-relaxed">
                 <ReactMarkdown 
