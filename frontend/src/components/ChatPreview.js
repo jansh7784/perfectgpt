@@ -56,27 +56,28 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                   ? 'bg-blue-500 text-white' 
                   : 'bg-gray-700 text-white'
               }`}>
-                <ReactMarkdown 
-                  remarkPlugins={[remarkGfm]}
-                  className="text-sm leading-relaxed prose prose-sm max-w-none prose-invert"
-                  components={{
-                    p: ({children}) => <p className="mb-2 last:mb-0">{children}</p>,
-                    a: ({children, href}) => (
-                      <a href={href} className="text-blue-200 hover:text-blue-100 underline" target="_blank" rel="noopener noreferrer">
-                        {children}
-                      </a>
-                    ),
-                    code: ({children, inline}) => (
-                      inline ? 
-                        <code className="bg-gray-800 text-gray-200 px-1 py-0.5 rounded text-xs">{children}</code> :
-                        <pre className="bg-gray-800 text-gray-200 p-2 rounded text-xs overflow-x-auto"><code>{children}</code></pre>
-                    ),
-                    strong: ({children}) => <strong className="font-semibold">{children}</strong>,
-                    em: ({children}) => <em className="italic">{children}</em>
-                  }}
-                >
-                  {message.message}
-                </ReactMarkdown>
+                <div className="text-sm leading-relaxed">
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      p: ({children}) => <p className="mb-2 last:mb-0">{children}</p>,
+                      a: ({children, href}) => (
+                        <a href={href} className="text-blue-200 hover:text-blue-100 underline" target="_blank" rel="noopener noreferrer">
+                          {children}
+                        </a>
+                      ),
+                      code: ({children, inline}) => (
+                        inline ? 
+                          <code className="bg-gray-800 text-gray-200 px-1 py-0.5 rounded text-xs">{children}</code> :
+                          <pre className="bg-gray-800 text-gray-200 p-2 rounded text-xs overflow-x-auto"><code>{children}</code></pre>
+                      ),
+                      strong: ({children}) => <strong className="font-semibold">{children}</strong>,
+                      em: ({children}) => <em className="italic">{children}</em>
+                    }}
+                  >
+                    {message.message}
+                  </ReactMarkdown>
+                </div>
               </div>
             </div>
             <UserIcon />
