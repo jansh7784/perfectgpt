@@ -8,6 +8,8 @@ const HomePage = () => {
   const [conversations, setConversations] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const [currentSender, setCurrentSender] = useState("user");
+  const [isEditExpanded, setIsEditExpanded] = useState(true);
+  const [isPreviewExpanded, setIsPreviewExpanded] = useState(true);
 
   const addMessage = () => {
     if (currentMessage.trim()) {
