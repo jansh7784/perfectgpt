@@ -361,6 +361,18 @@
           agent: "testing"
           comment: "Show input section checkbox working correctly. Toggles visibility of input field with 'Send a message...' placeholder. UI element responsive and functional."
 
+  - task: "Scrollable preview and edit sections"
+    implemented: true
+    working: true
+    file: "frontend/src/components/ChatPreview.js, frontend/src/components/ChatEditor.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Made both preview and edit sections properly scrollable within their frames: ✅ Preview section (chat messages) scrolls independently with custom scrollbar ✅ Edit section now has proper overflow handling for long content ✅ Both sections maintain fixed heights while content scrolls ✅ Improved overall UI layout and user experience within the website framework."
+
 ## metadata:
   created_by: "main_agent"
   version: "1.1"
