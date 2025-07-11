@@ -110,8 +110,9 @@ const HomePage = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-[600px]">
-            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+          {/* Fixed Height Container to Prevent Page Scrolling */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" style={{ height: '580px' }}>
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700 flex flex-col">
               <ChatEditor
                 currentMessage={currentMessage}
                 setCurrentMessage={setCurrentMessage}
@@ -121,7 +122,7 @@ const HomePage = () => {
                 clearConversation={clearConversation}
               />
             </div>
-            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700 flex flex-col">
               <ChatPreview
                 conversations={conversations}
                 downloadConversation={downloadConversationImage}
