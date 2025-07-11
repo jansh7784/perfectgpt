@@ -462,15 +462,6 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                   
                   {/* Right side buttons */}
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
-                    {/* Microphone button */}
-                    <button className={`p-1 rounded hover:bg-gray-200 ${
-                      isLightMode ? 'text-gray-400' : 'text-gray-400'
-                    }`}>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                      </svg>
-                    </button>
-                    
                     {/* Send button */}
                     <button className={`p-2 rounded-full bg-[#19c37d] hover:bg-[#16a570] text-white`}>
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
