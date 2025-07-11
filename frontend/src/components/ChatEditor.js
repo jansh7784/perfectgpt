@@ -25,12 +25,12 @@ const ChatEditor = ({
   };
 
   return (
-    <div className="h-full flex flex-col">
-      <h2 className="text-xl font-semibold text-white mb-6">Edit</h2>
+    <div className="h-full flex flex-col overflow-hidden">
+      <h2 className="text-xl font-semibold text-white mb-6 flex-shrink-0">Edit</h2>
       
-      <div className="flex-1 flex flex-col space-y-4">
+      <div className="flex-1 flex flex-col space-y-4 overflow-y-auto">
         {/* User Message Section */}
-        <div className="space-y-3">
+        <div className="space-y-3 flex-shrink-0">
           <div className="flex items-center space-x-2">
             <div className="flex items-center space-x-1">
               <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
@@ -71,7 +71,7 @@ const ChatEditor = ({
         </div>
 
         {/* Tips Section */}
-        <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+        <div className="bg-gray-800 rounded-lg p-4 border border-gray-700 flex-shrink-0">
           <h3 className="text-sm font-medium text-white mb-2">💡 Tips for better conversations:</h3>
           <ul className="text-xs text-gray-400 space-y-1">
             <li>• Use **bold** and *italic* markdown for emphasis</li>
@@ -83,7 +83,7 @@ const ChatEditor = ({
       </div>
 
       {/* Add Message Button */}
-      <div className="mt-6 space-y-3">
+      <div className="mt-6 space-y-3 flex-shrink-0">
         <button
           onClick={handleSubmit}
           disabled={!currentMessage.trim()}
