@@ -313,9 +313,9 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold text-white">Preview</h2>
-        <div className="flex items-center space-x-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 md:mb-6 space-y-3 sm:space-y-0">
+        <h2 className="text-lg md:text-xl font-semibold text-white">Preview</h2>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
           <label className="flex items-center space-x-2 text-sm text-gray-300 cursor-pointer">
             <input 
               type="checkbox" 
@@ -343,7 +343,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         </div>
       </div>
       
-      {/* ChatGPT Interface - Fixed Height Container */}
+      {/* ChatGPT Interface - Responsive Container */}
       <div className="flex-1 flex flex-col min-h-0">
         <div 
           id="chat-preview-container"
@@ -352,9 +352,10 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
               ? 'bg-white border-gray-300' 
               : 'bg-[#343541] border-gray-600'
           }`}
+          style={{ minHeight: '300px' }}
         >
-          {/* Header - ChatGPT Style */}
-          <div className={`border-b px-4 py-3 flex-shrink-0 ${
+          {/* Header - Responsive */}
+          <div className={`border-b px-3 md:px-4 py-3 flex-shrink-0 ${
             isLightMode 
               ? 'bg-gray-50 border-gray-200' 
               : 'bg-[#343541] border-gray-600'
@@ -373,7 +374,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
               
               {/* Center - ChatGPT title */}
               <div className="flex-1 text-center">
-                <span className={`font-semibold text-lg ${
+                <span className={`font-semibold text-base md:text-lg ${
                   isLightMode ? 'text-gray-900' : 'text-white'
                 }`}>
                   ChatGPT
@@ -393,21 +394,21 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
             </div>
           </div>
           
-          {/* Messages - Scrollable Area with ChatGPT.com exact spacing */}
+          {/* Messages - Responsive Scrollable Area */}
           <div 
             id="chat-messages"
-            className={`flex-1 overflow-y-auto py-4 custom-scrollbar ${
+            className={`flex-1 overflow-y-auto py-3 md:py-4 custom-scrollbar ${
               isLightMode ? 'bg-white' : 'bg-[#343541]'
             }`}
-            style={{ height: '400px', maxHeight: '400px' }}
+            style={{ minHeight: '200px', maxHeight: '400px' }}
           >
             {conversations.length === 0 ? (
-              <div className="flex items-center justify-center h-full">
+              <div className="flex items-center justify-center h-full px-4">
                 <div className="text-center">
                   <div className="mx-auto mb-4">
                     <ChatGPTIcon />
                   </div>
-                  <p className={`text-xl font-medium ${
+                  <p className={`text-lg md:text-xl font-medium ${
                     isLightMode ? 'text-gray-900' : 'text-white'
                   }`}>
                     How can I help you today?
