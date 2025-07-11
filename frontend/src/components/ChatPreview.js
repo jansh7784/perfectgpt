@@ -456,7 +456,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                   <input
                     type="text"
                     placeholder="Ask anything"
-                    className={`w-full px-4 py-4 pr-20 rounded-2xl border text-sm focus:outline-none focus:ring-1 focus:ring-gray-400 ${
+                    className={`w-full px-4 py-4 pr-16 rounded-2xl border text-sm focus:outline-none focus:ring-1 focus:ring-gray-400 ${
                       isLightMode 
                         ? 'bg-gray-100 border-gray-300 text-gray-900 placeholder-gray-500'
                         : 'bg-[#2f2f2f] border-gray-600 text-white placeholder-gray-400'
@@ -473,18 +473,6 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                     </button>
                   </div>
                 </div>
-                
-                {/* Tools button */}
-                <button className={`flex items-center space-x-1 px-3 py-2 rounded-lg ${
-                  isLightMode ? 'hover:bg-gray-200' : 'hover:bg-gray-600'
-                }`}>
-                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
-                  </svg>
-                  <span className={`text-sm ${
-                    isLightMode ? 'text-gray-600' : 'text-gray-300'
-                  }`}>Tools</span>
-                </button>
               </div>
               
               {/* Disclaimer */}
