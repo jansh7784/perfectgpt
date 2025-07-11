@@ -333,7 +333,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           className={`flex-1 rounded-lg border overflow-hidden flex flex-col ${
             isLightMode 
               ? 'bg-white border-gray-300' 
-              : 'bg-gray-800 border-gray-700'
+              : 'bg-[#343541] border-gray-600'
           }`}
         >
           {/* Header - ChatGPT Style */}
