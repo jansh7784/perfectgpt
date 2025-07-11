@@ -194,44 +194,56 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           downloadBtn.disabled = true;
         }
 
-        // Temporarily remove scroll bars and borders for cleaner screenshot
+        // Temporarily adjust styles for better screenshot quality
         const originalStyles = {
           overflow: element.style.overflow,
           border: element.style.border,
-          borderRadius: element.style.borderRadius
+          borderRadius: element.style.borderRadius,
+          boxShadow: element.style.boxShadow
         };
         
         element.style.overflow = 'visible';
         element.style.border = 'none';
-        element.style.borderRadius = '0';
+        element.style.borderRadius = '8px';
+        element.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
 
-        // Get the actual height of the content
+        // Get the actual content dimensions
         const messagesContainer = document.getElementById('chat-messages');
         const actualHeight = messagesContainer ? messagesContainer.scrollHeight : element.scrollHeight;
+        const actualWidth = element.scrollWidth;
         
+        // High-quality screenshot configuration
         const canvas = await html2canvas(element, {
           backgroundColor: isLightMode ? '#ffffff' : '#1f2937',
-          scale: 2,
+          scale: 3, // Increased scale for better quality
           useCORS: true,
           allowTaint: true,
           logging: false,
-          height: actualHeight + 60, // Add padding
-          width: element.scrollWidth,
+          foreignObjectRendering: true,
+          imageTimeout: 15000,
+          height: actualHeight + 80,
+          width: actualWidth,
           scrollX: 0,
           scrollY: 0,
-          windowWidth: element.scrollWidth,
-          windowHeight: actualHeight + 60
+          windowWidth: actualWidth,
+          windowHeight: actualHeight + 80,
+          ignoreElements: (element) => {
+            // Ignore scroll bars and other unwanted elements
+            return element.classList.contains('custom-scrollbar') || 
+                   element.tagName === 'SCROLLBAR-TRACK' ||
+                   element.tagName === 'SCROLLBAR-THUMB';
+          }
         });
         
         // Restore original styles
-        element.style.overflow = originalStyles.overflow;
-        element.style.border = originalStyles.border;
-        element.style.borderRadius = originalStyles.borderRadius;
+        Object.keys(originalStyles).forEach(key => {
+          element.style[key] = originalStyles[key];
+        });
         
-        // Create download link
+        // Create high-quality PNG download
         const link = document.createElement('a');
         link.download = `chatgpt-conversation-${new Date().toISOString().split('T')[0]}.png`;
-        link.href = canvas.toDataURL('image/png', 1.0);
+        link.href = canvas.toDataURL('image/png', 1.0); // Max quality
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
