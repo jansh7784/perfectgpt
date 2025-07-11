@@ -94,40 +94,39 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                 ? 'bg-gray-50 text-gray-900 border border-gray-200' 
                 : 'bg-gray-800 text-white border border-gray-700'
             }`}>
-              <ReactMarkdown 
-                remarkPlugins={[remarkGfm]}
-                className={`text-sm leading-relaxed prose prose-sm max-w-none ${
-                  isLightMode ? 'prose-gray' : 'prose-invert'
-                }`}
-                components={{
-                  p: ({children}) => <p className="mb-2 last:mb-0">{children}</p>,
-                  a: ({children, href}) => (
-                    <a href={href} className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">
-                      {children}
-                    </a>
-                  ),
-                  code: ({children, inline}) => (
-                    inline ? 
-                      <code className={`px-1 py-0.5 rounded text-xs ${
-                        isLightMode 
-                          ? 'bg-gray-200 text-gray-800' 
-                          : 'bg-gray-700 text-gray-200'
-                      }`}>{children}</code> :
-                      <pre className={`p-2 rounded text-xs overflow-x-auto ${
-                        isLightMode 
-                          ? 'bg-gray-200 text-gray-800' 
-                          : 'bg-gray-700 text-gray-200'
-                      }`}><code>{children}</code></pre>
-                  ),
-                  strong: ({children}) => <strong className="font-semibold">{children}</strong>,
-                  em: ({children}) => <em className="italic">{children}</em>,
-                  ul: ({children}) => <ul className="list-disc pl-4 mb-2">{children}</ul>,
-                  ol: ({children}) => <ol className="list-decimal pl-4 mb-2">{children}</ol>,
-                  li: ({children}) => <li className="mb-1">{children}</li>
-                }}
-              >
-                {message.message}
-              </ReactMarkdown>
+              <div className="text-sm leading-relaxed">
+                <ReactMarkdown 
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    p: ({children}) => <p className="mb-2 last:mb-0">{children}</p>,
+                    a: ({children, href}) => (
+                      <a href={href} className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">
+                        {children}
+                      </a>
+                    ),
+                    code: ({children, inline}) => (
+                      inline ? 
+                        <code className={`px-1 py-0.5 rounded text-xs ${
+                          isLightMode 
+                            ? 'bg-gray-200 text-gray-800' 
+                            : 'bg-gray-700 text-gray-200'
+                        }`}>{children}</code> :
+                        <pre className={`p-2 rounded text-xs overflow-x-auto ${
+                          isLightMode 
+                            ? 'bg-gray-200 text-gray-800' 
+                            : 'bg-gray-700 text-gray-200'
+                        }`}><code>{children}</code></pre>
+                    ),
+                    strong: ({children}) => <strong className="font-semibold">{children}</strong>,
+                    em: ({children}) => <em className="italic">{children}</em>,
+                    ul: ({children}) => <ul className="list-disc pl-4 mb-2">{children}</ul>,
+                    ol: ({children}) => <ol className="list-decimal pl-4 mb-2">{children}</ol>,
+                    li: ({children}) => <li className="mb-1">{children}</li>
+                  }}
+                >
+                  {message.message}
+                </ReactMarkdown>
+              </div>
             </div>
             {/* Action buttons */}
             <div className="flex items-center space-x-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
