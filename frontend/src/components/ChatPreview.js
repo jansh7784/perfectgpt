@@ -336,31 +336,40 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
               : 'bg-gray-800 border-gray-700'
           }`}
         >
-          {/* Header */}
+          {/* Header - ChatGPT Style */}
           <div className={`border-b px-4 py-3 flex-shrink-0 ${
             isLightMode 
               ? 'bg-gray-50 border-gray-200' 
               : 'bg-gray-700 border-gray-600'
           }`}>
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="flex items-center space-x-1">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                </div>
+              {/* Left side - Sidebar icon */}
+              <div className="flex items-center">
+                <button className={`p-1 rounded hover:bg-gray-200 ${
+                  isLightMode ? 'text-gray-600 hover:bg-gray-200' : 'text-gray-400 hover:bg-gray-600'
+                }`}>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              </div>
+              
+              {/* Center - ChatGPT title */}
+              <div className="flex-1 text-center">
                 <span className={`font-semibold ${
                   isLightMode ? 'text-gray-900' : 'text-white'
                 }`}>
                   ChatGPT
                 </span>
               </div>
-              <div className="flex items-center space-x-2">
+              
+              {/* Right side - Edit icon */}
+              <div className="flex items-center">
                 <button className={`p-1 rounded hover:bg-gray-200 ${
                   isLightMode ? 'text-gray-600 hover:bg-gray-200' : 'text-gray-400 hover:bg-gray-600'
                 }`}>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
                 </button>
               </div>
