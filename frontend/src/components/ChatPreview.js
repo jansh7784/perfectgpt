@@ -448,7 +448,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                     className={`w-full px-4 py-4 pr-20 rounded-2xl border text-sm focus:outline-none focus:ring-1 focus:ring-gray-400 ${
                       isLightMode 
                         ? 'bg-gray-100 border-gray-300 text-gray-900 placeholder-gray-500'
-                        : 'bg-[#40414f] border-gray-600 text-white placeholder-gray-400'
+                        : 'bg-[#2f2f2f] border-gray-600 text-white placeholder-gray-400'
                     }`}
                   />
                   
