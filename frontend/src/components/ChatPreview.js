@@ -404,7 +404,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                 ? 'bg-gray-50 border-gray-200' 
                 : 'bg-gray-700 border-gray-600'
             }`}>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 mb-2">
                 <div className="flex-1 relative">
                   <input
                     type="text"
@@ -430,6 +430,13 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                     </button>
                   </div>
                 </div>
+              </div>
+              <div className="text-center">
+                <p className={`text-xs ${
+                  isLightMode ? 'text-gray-500' : 'text-gray-400'
+                }`}>
+                  ChatGPT can make mistakes. Check important info.
+                </p>
               </div>
             </div>
           )}
