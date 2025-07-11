@@ -38,15 +38,16 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
     const messageId = message.id || index;
     
     if (isUser) {
+      // User message - right side, no avatar, plain bubble
       return (
-        <div className="flex justify-end mb-4 group">
+        <div className="flex justify-end mb-4">
           <div className="max-w-xs lg:max-w-md xl:max-w-lg">
             <div className={`rounded-lg px-4 py-2 ${
               isLightMode 
                 ? 'bg-blue-500 text-white' 
                 : 'bg-gray-700 text-white'
             }`}>
-              <div className="text-sm leading-relaxed">
+              <div className="text-sm leading-relaxed whitespace-pre-wrap">
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
                   components={{
@@ -59,7 +60,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                     code: ({children, inline}) => (
                       inline ? 
                         <code className="bg-gray-800 text-gray-200 px-1 py-0.5 rounded text-xs">{children}</code> :
-                        <pre className="bg-gray-800 text-gray-200 p-2 rounded text-xs overflow-x-auto"><code>{children}</code></pre>
+                        <pre className="bg-gray-800 text-gray-200 p-2 rounded text-xs overflow-x-auto my-2"><code>{children}</code></pre>
                     ),
                     strong: ({children}) => <strong className="font-semibold">{children}</strong>,
                     em: ({children}) => <em className="italic">{children}</em>
