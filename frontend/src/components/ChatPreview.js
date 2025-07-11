@@ -234,7 +234,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         
         // High-quality screenshot configuration
         const canvas = await html2canvas(element, {
-          backgroundColor: isLightMode ? '#ffffff' : '#1f2937',
+          backgroundColor: isLightMode ? '#ffffff' : '#343541',
           scale: 2,
           useCORS: true,
           allowTaint: true,
@@ -250,11 +250,28 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           onclone: (clonedDoc) => {
             // Ensure all messages are visible in the clone
             const clonedMessages = clonedDoc.getElementById('chat-messages');
+            const clonedElement = clonedDoc.getElementById('chat-preview-container');
             if (clonedMessages) {
               clonedMessages.style.overflow = 'visible';
               clonedMessages.style.height = 'auto';
               clonedMessages.style.maxHeight = 'none';
+              clonedMessages.style.backgroundColor = isLightMode ? '#ffffff' : '#343541';
             }
+            if (clonedElement) {
+              clonedElement.style.backgroundColor = isLightMode ? '#ffffff' : '#343541';
+            }
+            
+            // Ensure all text is visible
+            const allElements = clonedDoc.querySelectorAll('*');
+            allElements.forEach(el => {
+              if (el.style.color === 'transparent' || el.style.color === '') {
+                if (isLightMode) {
+                  el.style.color = '#000000';
+                } else {
+                  el.style.color = '#ffffff';
+                }
+              }
+            });
           }
         });
         
