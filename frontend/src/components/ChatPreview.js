@@ -435,94 +435,71 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
 
           {/* Input Section - Exact ChatGPT.com UI */}
           {showInputSection && (
-            <div className={`border-t px-4 py-4 ${
+            <div className={`border-t px-4 py-3 ${
               isLightMode 
                 ? 'bg-gray-50 border-gray-200' 
                 : 'bg-[#212121] border-white border-opacity-20'
             }`}>
-              <div className={`flex items-center gap-3 p-3 rounded-3xl ${
-                isLightMode 
-                  ? 'bg-gray-100 border border-gray-300' 
-                  : 'bg-[#2f2f2f] border border-gray-600'
-              }`}>
-                {/* Left side buttons */}
-                <div className="flex items-center gap-2">
-                  {/* Attach button */}
-                  <button 
-                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              <div className="flex items-center space-x-2 mb-2">
+                {/* Plus button */}
+                <button className={`p-2 rounded-full ${
+                  isLightMode ? 'hover:bg-gray-200' : 'hover:bg-gray-600'
+                }`}>
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                </button>
+                
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    placeholder="Ask anything"
+                    className={`w-full px-4 py-4 pr-20 rounded-2xl border text-sm focus:outline-none focus:ring-1 focus:ring-gray-400 ${
                       isLightMode 
-                        ? 'text-gray-600 hover:bg-gray-200' 
-                        : 'text-gray-300 hover:bg-gray-600'
+                        ? 'bg-gray-100 border-gray-300 text-gray-900 placeholder-gray-500'
+                        : 'bg-[#2f2f2f] border-gray-600 text-white placeholder-gray-400'
                     }`}
-                    onClick={() => alert('Attach file clicked')}
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M16.5 6.5L7.5 15.5c-1.38 1.38-1.38 3.62 0 5s3.62 1.38 5 0l6-6c.78-.78.78-2.05 0-2.83-.78-.78-2.05-.78-2.83 0l-5 5c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.29-4.29"/>
-                    </svg>
-                    <span>Attach</span>
-                  </button>
+                  />
                   
-                  {/* Search button */}
-                  <button 
-                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      isLightMode 
-                        ? 'text-gray-600 hover:bg-gray-200' 
-                        : 'text-gray-300 hover:bg-gray-600'
-                    }`}
-                    onClick={() => alert('Search clicked')}
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.5 19l-4.99-5zm-6 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5 15 7.01 15 9.5 12.99 14 10.5 14z"/>
-                    </svg>
-                    <span>Search</span>
-                  </button>
+                  {/* Right side buttons */}
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
+                    {/* Microphone button */}
+                    <button className={`p-1 rounded hover:bg-gray-200 ${
+                      isLightMode ? 'text-gray-400' : 'text-gray-400'
+                    }`}>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                      </svg>
+                    </button>
+                    
+                    {/* Send button */}
+                    <button className={`p-2 rounded-full bg-[#19c37d] hover:bg-[#16a570] text-white`}>
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
                 
-                {/* Textarea */}
-                <textarea
-                  placeholder="Ask anything"
-                  className={`flex-1 resize-none bg-transparent border-none text-base outline-none leading-relaxed min-h-[24px] max-h-[120px] py-1 ${
-                    isLightMode ? 'text-gray-900 placeholder-gray-500' : 'text-white placeholder-gray-400'
-                  }`}
-                  style={{ 
-                    minHeight: '24px',
-                    maxHeight: '120px',
-                    lineHeight: '1.4'
-                  }}
-                  onKeyDown={(e) => {
-                    if (!e.shiftKey && e.key === 'Enter') {
-                      e.preventDefault();
-                      const text = e.target.value.trim();
-                      if (text) {
-                        console.log('Message sent:', text);
-                        e.target.value = '';
-                      }
-                    }
-                  }}
-                />
-                
-                {/* Voice button */}
-                <button 
-                  className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    isLightMode 
-                      ? 'text-gray-600 hover:bg-gray-200' 
-                      : 'text-gray-300 hover:bg-gray-600'
-                  }`}
-                  onClick={() => alert('Voice clicked')}
-                >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
+                {/* Tools button */}
+                <button className={`flex items-center space-x-1 px-3 py-2 rounded-lg ${
+                  isLightMode ? 'hover:bg-gray-200' : 'hover:bg-gray-600'
+                }`}>
+                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
                   </svg>
-                  <span>Voice</span>
+                  <span className={`text-sm ${
+                    isLightMode ? 'text-gray-600' : 'text-gray-300'
+                  }`}>Tools</span>
                 </button>
               </div>
               
               {/* Disclaimer */}
-              <div className="text-center mt-3">
+              <div className="text-center">
                 <p className={`text-xs ${
                   isLightMode ? 'text-gray-500' : 'text-gray-400'
                 }`}>
-                  ChatGPT can make mistakes. Check important info. See Cookie Preferences.
+                  ChatGPT can make mistakes. Check important info.
                 </p>
               </div>
             </div>
