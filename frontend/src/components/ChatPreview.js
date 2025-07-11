@@ -382,7 +382,9 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
               </div>
             ) : (
               conversations.map((msg, index) => (
-                <ChatMessage key={msg.id || index} message={msg} index={index} />
+                <div key={msg.id || index} className="animate-fadeIn">
+                  <ChatMessage message={msg} index={index} />
+                </div>
               ))
             )}
           </div>
