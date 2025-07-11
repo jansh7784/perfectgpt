@@ -119,7 +119,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
               </div>
             </div>
             {/* Action buttons - only show on hover, ChatGPT.com style */}
-            <div className="flex items-center space-x-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-center space-x-1 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
               <button 
                 onClick={() => copyToClipboard(message.message, messageId)}
                 className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
