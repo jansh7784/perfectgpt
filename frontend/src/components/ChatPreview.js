@@ -38,11 +38,11 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
     const messageId = message.id || index;
     
     if (isUser) {
-      // User message - right side, oval/pill-shaped bubble like ChatGPT.com
+      // User message - right side, smaller oval/pill-shaped bubble like ChatGPT.com
       return (
         <div className="flex justify-end mb-6 px-4">
           <div className="max-w-xs lg:max-w-md xl:max-w-lg">
-            <div className={`rounded-3xl px-6 py-3 ${
+            <div className={`rounded-2xl px-4 py-2 ${
               isLightMode 
                 ? 'bg-blue-500 text-white' 
                 : 'bg-gray-700 text-white'
@@ -51,7 +51,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
                   components={{
-                    p: ({children}) => <p className="mb-2 last:mb-0">{children}</p>,
+                    p: ({children}) => <p className="mb-1 last:mb-0">{children}</p>,
                     a: ({children, href}) => (
                       <a href={href} className="text-blue-200 hover:text-blue-100 underline" target="_blank" rel="noopener noreferrer">
                         {children}
