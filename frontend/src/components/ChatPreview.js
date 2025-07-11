@@ -226,7 +226,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         messagesContainer.style.maxHeight = 'none';
 
         // Wait for layout to settle
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 500));
 
         // Get the full height of content
         const fullHeight = element.scrollHeight;
@@ -235,9 +235,9 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         // High-quality screenshot configuration
         const canvas = await html2canvas(element, {
           backgroundColor: isLightMode ? '#ffffff' : '#212121',
-          scale: 3,
+          scale: 2,
           useCORS: true,
-          allowTaint: true,
+          allowTaint: false,
           logging: false,
           foreignObjectRendering: true,
           imageTimeout: 15000,
@@ -259,17 +259,18 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
             }
             if (clonedElement) {
               clonedElement.style.backgroundColor = isLightMode ? '#ffffff' : '#212121';
+              clonedElement.style.overflow = 'visible';
+              clonedElement.style.height = 'auto';
             }
             
-            // Ensure all text is visible
+            // Ensure all text is visible with proper colors
             const allElements = clonedDoc.querySelectorAll('*');
             allElements.forEach(el => {
-              if (el.style.color === 'transparent' || el.style.color === '') {
-                if (isLightMode) {
-                  el.style.color = '#000000';
-                } else {
-                  el.style.color = '#ffffff';
-                }
+              if (el.style.visibility === 'hidden') {
+                el.style.visibility = 'visible';
+              }
+              if (el.style.display === 'none') {
+                el.style.display = 'block';
               }
             });
           }
@@ -283,18 +284,20 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           messagesContainer.style[key] = originalStyles.messages[key];
         });
         
-        // Create high-quality PNG download with proper error handling
+        // Create high-quality JPG download
         try {
-          const dataUrl = canvas.toDataURL('image/png', 1.0);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.95); // JPG format with 95% quality
           const link = document.createElement('a');
-          link.download = `chatgpt-conversation-${new Date().toISOString().split('T')[0]}.png`;
+          link.download = `chatgpt-conversation-${new Date().toISOString().split('T')[0]}.jpg`;
           link.href = dataUrl;
+          
+          // Force download
+          link.style.display = 'none';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
           
-          // Show success message
-          console.log('Screenshot downloaded successfully!');
+          console.log('Screenshot downloaded successfully as JPG!');
         } catch (downloadError) {
           console.error('Error creating download link:', downloadError);
           throw new Error('Failed to create download link');
