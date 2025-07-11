@@ -186,7 +186,9 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
     try {
       const html2canvas = (await import('html2canvas')).default;
       const element = document.getElementById('chat-preview-container');
-      if (element) {
+      const messagesContainer = document.getElementById('chat-messages');
+      
+      if (element && messagesContainer) {
         // Show loading state
         const downloadBtn = document.querySelector('.download-btn');
         if (downloadBtn) {
@@ -194,56 +196,80 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           downloadBtn.disabled = true;
         }
 
-        // Temporarily adjust styles for better screenshot quality
+        // Force scroll to top to capture all messages
+        messagesContainer.scrollTop = 0;
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        // Temporarily adjust styles for better screenshot
         const originalStyles = {
-          overflow: element.style.overflow,
-          border: element.style.border,
-          borderRadius: element.style.borderRadius,
-          boxShadow: element.style.boxShadow
+          element: {
+            overflow: element.style.overflow,
+            height: element.style.height,
+            minHeight: element.style.minHeight,
+            maxHeight: element.style.maxHeight
+          },
+          messages: {
+            overflow: messagesContainer.style.overflow,
+            height: messagesContainer.style.height,
+            maxHeight: messagesContainer.style.maxHeight
+          }
         };
         
+        // Set styles to show all content
         element.style.overflow = 'visible';
-        element.style.border = 'none';
-        element.style.borderRadius = '8px';
-        element.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+        element.style.height = 'auto';
+        element.style.minHeight = 'auto';
+        element.style.maxHeight = 'none';
+        
+        messagesContainer.style.overflow = 'visible';
+        messagesContainer.style.height = 'auto';
+        messagesContainer.style.maxHeight = 'none';
 
-        // Get the actual content dimensions
-        const messagesContainer = document.getElementById('chat-messages');
-        const actualHeight = messagesContainer ? messagesContainer.scrollHeight : element.scrollHeight;
-        const actualWidth = element.scrollWidth;
+        // Wait for layout to settle
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        // Get the full height of content
+        const fullHeight = element.scrollHeight;
+        const fullWidth = element.scrollWidth;
         
         // High-quality screenshot configuration
         const canvas = await html2canvas(element, {
           backgroundColor: isLightMode ? '#ffffff' : '#1f2937',
-          scale: 3, // Increased scale for better quality
+          scale: 2,
           useCORS: true,
           allowTaint: true,
           logging: false,
           foreignObjectRendering: true,
           imageTimeout: 15000,
-          height: actualHeight + 80,
-          width: actualWidth,
+          height: fullHeight,
+          width: fullWidth,
           scrollX: 0,
           scrollY: 0,
-          windowWidth: actualWidth,
-          windowHeight: actualHeight + 80,
-          ignoreElements: (element) => {
-            // Ignore scroll bars and other unwanted elements
-            return element.classList.contains('custom-scrollbar') || 
-                   element.tagName === 'SCROLLBAR-TRACK' ||
-                   element.tagName === 'SCROLLBAR-THUMB';
+          windowWidth: fullWidth,
+          windowHeight: fullHeight,
+          onclone: (clonedDoc) => {
+            // Ensure all messages are visible in the clone
+            const clonedMessages = clonedDoc.getElementById('chat-messages');
+            if (clonedMessages) {
+              clonedMessages.style.overflow = 'visible';
+              clonedMessages.style.height = 'auto';
+              clonedMessages.style.maxHeight = 'none';
+            }
           }
         });
         
         // Restore original styles
-        Object.keys(originalStyles).forEach(key => {
-          element.style[key] = originalStyles[key];
+        Object.keys(originalStyles.element).forEach(key => {
+          element.style[key] = originalStyles.element[key];
+        });
+        Object.keys(originalStyles.messages).forEach(key => {
+          messagesContainer.style[key] = originalStyles.messages[key];
         });
         
         // Create high-quality PNG download
         const link = document.createElement('a');
         link.download = `chatgpt-conversation-${new Date().toISOString().split('T')[0]}.png`;
-        link.href = canvas.toDataURL('image/png', 1.0); // Max quality
+        link.href = canvas.toDataURL('image/png', 1.0);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -253,6 +279,8 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           downloadBtn.textContent = 'Download ChatGPT Screenshot';
           downloadBtn.disabled = false;
         }
+      } else {
+        throw new Error('Chat container not found');
       }
     } catch (error) {
       console.error('Error generating screenshot:', error);
