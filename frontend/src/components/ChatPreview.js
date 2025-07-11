@@ -323,7 +323,6 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
   return (
     <div className="h-full flex flex-col">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 md:mb-6 space-y-3 sm:space-y-0">
-        <h2 className="text-lg md:text-xl font-semibold text-white">Preview</h2>
         <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
           <label className="flex items-center space-x-2 text-sm text-gray-300 cursor-pointer">
             <input 
