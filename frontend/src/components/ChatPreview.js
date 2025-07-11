@@ -48,51 +48,48 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
     
     if (isUser) {
       return (
-        <div className="flex justify-end mb-6 group">
-          <div className="flex items-start space-x-3 max-w-[70%]">
-            <div className="flex-1">
-              <div className={`rounded-2xl px-4 py-3 shadow-sm ${
-                isLightMode 
-                  ? 'bg-blue-500 text-white' 
-                  : 'bg-gray-700 text-white'
-              }`}>
-                <div className="text-sm leading-relaxed">
-                  <ReactMarkdown 
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      p: ({children}) => <p className="mb-2 last:mb-0">{children}</p>,
-                      a: ({children, href}) => (
-                        <a href={href} className="text-blue-200 hover:text-blue-100 underline" target="_blank" rel="noopener noreferrer">
-                          {children}
-                        </a>
-                      ),
-                      code: ({children, inline}) => (
-                        inline ? 
-                          <code className="bg-gray-800 text-gray-200 px-1 py-0.5 rounded text-xs">{children}</code> :
-                          <pre className="bg-gray-800 text-gray-200 p-2 rounded text-xs overflow-x-auto"><code>{children}</code></pre>
-                      ),
-                      strong: ({children}) => <strong className="font-semibold">{children}</strong>,
-                      em: ({children}) => <em className="italic">{children}</em>
-                    }}
-                  >
-                    {message.message}
-                  </ReactMarkdown>
-                </div>
+        <div className="flex justify-end mb-4 group">
+          <div className="max-w-xs lg:max-w-md xl:max-w-lg">
+            <div className={`rounded-lg px-4 py-2 ${
+              isLightMode 
+                ? 'bg-blue-500 text-white' 
+                : 'bg-gray-700 text-white'
+            }`}>
+              <div className="text-sm leading-relaxed">
+                <ReactMarkdown 
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    p: ({children}) => <p className="mb-2 last:mb-0">{children}</p>,
+                    a: ({children, href}) => (
+                      <a href={href} className="text-blue-200 hover:text-blue-100 underline" target="_blank" rel="noopener noreferrer">
+                        {children}
+                      </a>
+                    ),
+                    code: ({children, inline}) => (
+                      inline ? 
+                        <code className="bg-gray-800 text-gray-200 px-1 py-0.5 rounded text-xs">{children}</code> :
+                        <pre className="bg-gray-800 text-gray-200 p-2 rounded text-xs overflow-x-auto"><code>{children}</code></pre>
+                    ),
+                    strong: ({children}) => <strong className="font-semibold">{children}</strong>,
+                    em: ({children}) => <em className="italic">{children}</em>
+                  }}
+                >
+                  {message.message}
+                </ReactMarkdown>
               </div>
             </div>
-            <UserIcon />
           </div>
         </div>
       );
     } else {
       return (
-        <div className="flex items-start space-x-3 mb-6 group">
+        <div className="flex items-start space-x-3 mb-4 group">
           <ChatGPTIcon />
           <div className="flex-1 max-w-none">
-            <div className={`rounded-2xl px-4 py-3 shadow-sm transition-all duration-200 ${
+            <div className={`rounded-lg px-4 py-2 ${
               isLightMode 
-                ? 'bg-gray-50 text-gray-900 border border-gray-200' 
-                : 'bg-gray-800 text-white border border-gray-700'
+                ? 'bg-gray-100 text-gray-900' 
+                : 'bg-gray-800 text-white'
             }`}>
               <div className="text-sm leading-relaxed">
                 <ReactMarkdown 
@@ -128,56 +125,44 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                 </ReactMarkdown>
               </div>
             </div>
-            {/* Action buttons */}
-            <div className="flex items-center space-x-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            {/* Simple Action buttons - only show on hover */}
+            <div className="flex items-center space-x-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <button 
                 onClick={() => copyToClipboard(message.message, messageId)}
-                className={`w-8 h-8 rounded-lg hover:bg-gray-600 flex items-center justify-center transition-colors ${
-                  isLightMode ? 'hover:bg-gray-200' : 'hover:bg-gray-600'
-                }`}
-                data-tooltip-id="copy-tooltip"
-                data-tooltip-content={copiedMessageId === messageId ? "Copied!" : "Copy"}
+                className="w-7 h-7 rounded hover:bg-gray-600 flex items-center justify-center"
+                title={copiedMessageId === messageId ? "Copied!" : "Copy"}
               >
                 {copiedMessageId === messageId ? (
                   <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 ) : (
-                  <svg className={`w-4 h-4 ${isLightMode ? 'text-gray-500' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
                 )}
               </button>
               <button 
-                className={`w-8 h-8 rounded-lg hover:bg-gray-600 flex items-center justify-center transition-colors ${
-                  isLightMode ? 'hover:bg-gray-200' : 'hover:bg-gray-600'
-                }`}
-                data-tooltip-id="thumbs-up-tooltip"
-                data-tooltip-content="Good response"
+                className="w-7 h-7 rounded hover:bg-gray-600 flex items-center justify-center"
+                title="Good response"
               >
-                <svg className={`w-4 h-4 ${isLightMode ? 'text-gray-500' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                 </svg>
               </button>
               <button 
-                className={`w-8 h-8 rounded-lg hover:bg-gray-600 flex items-center justify-center transition-colors ${
-                  isLightMode ? 'hover:bg-gray-200' : 'hover:bg-gray-600'
-                }`}
-                data-tooltip-id="thumbs-down-tooltip"
-                data-tooltip-content="Bad response"
+                className="w-7 h-7 rounded hover:bg-gray-600 flex items-center justify-center"
+                title="Bad response"
               >
-                <svg className={`w-4 h-4 ${isLightMode ? 'text-gray-500' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018c.163 0 .326.02.485.06L17 4m-7 10v5a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2M7 4H5a2 2 0 00-2 2v6a2 2 0 002 2h2.5" />
                 </svg>
               </button>
               <button 
-                className={`w-8 h-8 rounded-lg hover:bg-gray-600 flex items-center justify-center transition-colors ${
-                  isLightMode ? 'hover:bg-gray-200' : 'hover:bg-gray-600'
-                }`}
-                data-tooltip-id="retry-tooltip"
-                data-tooltip-content="Regenerate response"
+                className="w-7 h-7 rounded hover:bg-gray-600 flex items-center justify-center"
+                title="Regenerate"
               >
-                <svg className={`w-4 h-4 ${isLightMode ? 'text-gray-500' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
               </button>
