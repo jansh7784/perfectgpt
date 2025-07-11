@@ -369,7 +369,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
             )}
           </div>
 
-          {/* Input Section - Simple and Clean */}
+          {/* Input Section - Compact ChatGPT-like dropdown style */}
           {showInputSection && (
             <div className={`border-t px-4 py-3 ${
               isLightMode 
@@ -377,22 +377,31 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                 : 'bg-gray-700 border-gray-600'
             }`}>
               <div className="flex items-center space-x-3">
-                <div className="flex-1">
+                <div className="flex-1 relative">
                   <input
                     type="text"
-                    placeholder="Send a message..."
-                    className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    placeholder="Ask anything"
+                    className={`w-full px-4 py-2.5 pr-12 rounded-full border text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                       isLightMode 
                         ? 'bg-white border-gray-300 text-gray-900'
                         : 'bg-gray-800 border-gray-600 text-white'
                     }`}
                   />
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
+                    <button className={`p-1 rounded hover:bg-gray-200 ${
+                      isLightMode ? 'text-gray-400' : 'text-gray-500'
+                    }`}>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                      </svg>
+                    </button>
+                    <button className="bg-gray-600 hover:bg-gray-500 text-white p-1.5 rounded-full">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
-                </button>
               </div>
             </div>
           )}
