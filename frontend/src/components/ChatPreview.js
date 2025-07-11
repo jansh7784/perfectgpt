@@ -336,7 +336,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           {/* Messages - Scrollable Area */}
           <div 
             id="chat-messages"
-            className={`flex-1 overflow-y-auto p-4 ${
+            className={`flex-1 overflow-y-auto p-4 custom-scrollbar ${
               isLightMode ? 'bg-white' : 'bg-gray-800'
             }`}
             style={{ height: '400px', maxHeight: '400px' }}
