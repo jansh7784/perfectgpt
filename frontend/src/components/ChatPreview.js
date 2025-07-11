@@ -198,7 +198,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
 
         // Force scroll to top to capture all messages
         messagesContainer.scrollTop = 0;
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => setTimeout(resolve, 300));
 
         // Temporarily adjust styles for better screenshot
         const originalStyles = {
@@ -226,7 +226,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         messagesContainer.style.maxHeight = 'none';
 
         // Wait for layout to settle
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => setTimeout(resolve, 300));
 
         // Get the full height of content
         const fullHeight = element.scrollHeight;
@@ -234,8 +234,8 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
         
         // High-quality screenshot configuration
         const canvas = await html2canvas(element, {
-          backgroundColor: isLightMode ? '#ffffff' : '#343541',
-          scale: 2,
+          backgroundColor: isLightMode ? '#ffffff' : '#212121',
+          scale: 3,
           useCORS: true,
           allowTaint: true,
           logging: false,
@@ -255,10 +255,10 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
               clonedMessages.style.overflow = 'visible';
               clonedMessages.style.height = 'auto';
               clonedMessages.style.maxHeight = 'none';
-              clonedMessages.style.backgroundColor = isLightMode ? '#ffffff' : '#343541';
+              clonedMessages.style.backgroundColor = isLightMode ? '#ffffff' : '#212121';
             }
             if (clonedElement) {
-              clonedElement.style.backgroundColor = isLightMode ? '#ffffff' : '#343541';
+              clonedElement.style.backgroundColor = isLightMode ? '#ffffff' : '#212121';
             }
             
             // Ensure all text is visible
@@ -283,13 +283,22 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
           messagesContainer.style[key] = originalStyles.messages[key];
         });
         
-        // Create high-quality PNG download
-        const link = document.createElement('a');
-        link.download = `chatgpt-conversation-${new Date().toISOString().split('T')[0]}.png`;
-        link.href = canvas.toDataURL('image/png', 1.0);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // Create high-quality PNG download with proper error handling
+        try {
+          const dataUrl = canvas.toDataURL('image/png', 1.0);
+          const link = document.createElement('a');
+          link.download = `chatgpt-conversation-${new Date().toISOString().split('T')[0]}.png`;
+          link.href = dataUrl;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          
+          // Show success message
+          console.log('Screenshot downloaded successfully!');
+        } catch (downloadError) {
+          console.error('Error creating download link:', downloadError);
+          throw new Error('Failed to create download link');
+        }
 
         // Reset button state
         if (downloadBtn) {
