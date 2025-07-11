@@ -131,6 +131,9 @@
         - working: true
           agent: "main"
           comment: "MongoDB connection working, data persisting correctly, status_checks collection functional"
+        - working: true
+          agent: "testing"
+          comment: "MongoDB persistence thoroughly tested - Created test records with unique IDs, verified data storage and retrieval cycle. Connection stable, status_checks collection working correctly with UUID-based records."
 
 ## frontend:
   - task: "Main application UI and navigation"
