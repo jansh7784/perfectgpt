@@ -88,7 +88,7 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
                   components={{
-                    p: ({children}) => <p className="mb-2 last:mb-0">{children}</p>,
+                    p: ({children}) => <p className="mb-0">{children}</p>,
                     a: ({children, href}) => (
                       <a href={href} className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">
                         {children}
@@ -99,12 +99,12 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
                         <code className={`px-1 py-0.5 rounded text-xs ${
                           isLightMode 
                             ? 'bg-gray-200 text-gray-800' 
-                            : 'bg-gray-700 text-gray-200'
+                            : 'bg-gray-600 text-gray-200'
                         }`}>{children}</code> :
                         <pre className={`p-2 rounded text-xs overflow-x-auto my-2 ${
                           isLightMode 
                             ? 'bg-gray-200 text-gray-800' 
-                            : 'bg-gray-700 text-gray-200'
+                            : 'bg-gray-600 text-gray-200'
                         }`}><code>{children}</code></pre>
                     ),
                     strong: ({children}) => <strong className="font-semibold">{children}</strong>,
