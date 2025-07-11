@@ -26,8 +26,6 @@ const ChatEditor = ({
 
   return (
     <div className="h-full flex flex-col overflow-hidden">
-      <h2 className="text-lg md:text-xl font-semibold text-white mb-4 md:mb-6 flex-shrink-0">Edit</h2>
-      
       <div className="flex-1 flex flex-col space-y-3 md:space-y-4 overflow-y-auto">
         {/* User Message Section */}
         <div className="space-y-3 flex-shrink-0">
