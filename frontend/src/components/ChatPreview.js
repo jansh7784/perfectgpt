@@ -346,52 +346,30 @@ const ChatPreview = ({ conversations, downloadConversation }) => {
             )}
           </div>
 
-          {/* Input Section - Sticky at Bottom */}
+          {/* Input Section - Simple and Clean */}
           {showInputSection && (
-            <div className={`border-t px-4 py-3 mt-auto flex-shrink-0 ${
+            <div className={`border-t px-4 py-3 ${
               isLightMode 
                 ? 'bg-gray-50 border-gray-200' 
                 : 'bg-gray-700 border-gray-600'
             }`}>
               <div className="flex items-center space-x-3">
-                <div className="flex-1 flex items-center space-x-2">
-                  <div className="flex-1 relative">
-                    <input
-                      type="text"
-                      placeholder="Ask anything..."
-                      className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
-                        isLightMode 
-                          ? 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                          : 'bg-gray-800 border-gray-600 text-white placeholder-gray-400'
-                      }`}
-                    />
-                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
-                      <button 
-                        className={`p-1 rounded-md hover:bg-gray-200 transition-colors ${
-                          isLightMode ? 'text-gray-500 hover:bg-gray-200' : 'text-gray-400 hover:bg-gray-600'
-                        }`}
-                        data-tooltip-id="attach-tooltip"
-                        data-tooltip-content="Attach files"
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                        </svg>
-                      </button>
-                      <button 
-                        className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg transition-colors"
-                        data-tooltip-id="send-tooltip"
-                        data-tooltip-content="Send message"
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
+                <div className="flex-1">
+                  <input
+                    type="text"
+                    placeholder="Send a message..."
+                    className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      isLightMode 
+                        ? 'bg-white border-gray-300 text-gray-900'
+                        : 'bg-gray-800 border-gray-600 text-white'
+                    }`}
+                  />
                 </div>
-              </div>
-              <div className="mt-2 text-xs text-center text-gray-500">
-                ChatGPT can make mistakes. Check important info.
+                <button className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  </svg>
+                </button>
               </div>
             </div>
           )}
