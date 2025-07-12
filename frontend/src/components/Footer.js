@@ -118,19 +118,31 @@ const Footer = () => {
           </div>
         </div>
         
-        {/* Bottom Footer - Single Line with All Elements */}
-        <div className="border-t border-gray-200 dark:border-gray-700 py-6">
-          <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
-            {/* Copyright */}
-            <div className="flex items-center space-x-4">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                © {currentYear} Fake ChatGPT Generator. All rights reserved.
-              </p>
-              <span className="text-gray-300 dark:text-gray-600">|</span>
-              <p className="text-xs text-gray-400 dark:text-gray-500">
-                Made with ❤️ for Educators & Creators
-              </p>
-            </div>
+       {/* Bottom Footer - Single Line with All Elements */}
+<div className="border-t border-gray-200 dark:border-gray-700 py-6">
+  <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+    {/* Copyright */}
+    <div className="flex items-center space-x-4">
+      <p className="text-sm text-gray-500 dark:text-gray-400">
+        © {currentYear} Fake ChatGPT Generator. All rights reserved.
+      </p>
+      <span className="text-gray-300 dark:text-gray-600">|</span>
+      <p className="text-xs text-gray-400 dark:text-gray-500">
+        Made with ❤️ for Educators & Creators
+      </p>
+      <span className="text-gray-300 dark:text-gray-600">|</span>
+      <a
+        href="https://www.linkedin.com/in/ansh--jain" 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-xs text-blue-500 hover:underline"
+      >
+        by Ansh Jain
+      </a>
+    </div>
+  </div>
+</div>
+
             
             {/* Legal Links - Single Line */}
             <div className="flex items-center space-x-1 text-sm">
