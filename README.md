@@ -1,7 +1,7 @@
 
-# 🧠 FakeChatGPT Clone
+# 🧠 ChatGen:- A chatgpt like chat generator
 
-A **1000% pixel-perfect**, frontend-only clone of [fakechatgpt.com](https://fakechatgpt.com), built using **React**, **Tailwind CSS**, and **html2canvas**. This app lets users create AI-like chat conversations, edit messages, toggle themes, and download conversations as high-quality images — all without a backend.
+A  frontend-only chat like chatgpt project clone of built using **React**, **Tailwind CSS**, and **html2canvas**. This app lets users create AI-like chat conversations, edit messages, toggle themes, and download conversations as high-quality images — all without a backend.
 
 ## ✨ Features
 
@@ -56,8 +56,8 @@ A **1000% pixel-perfect**, frontend-only clone of [fakechatgpt.com](https://fake
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/your-username/fakechatgpt-clone.git
-cd fakechatgpt-clone/frontend
+git clone https://github.com/jansh7784/perfectgpt.git
+cd perfectgpt/frontend
 ```
 
 ### 2. Install Dependencies
@@ -104,7 +104,7 @@ MIT License. Use freely with attribution if helpful!
 
 ## 🙌 Credits
 
-This project was inspired by [fakechatgpt.com](https://fakechatgpt.com). Built for educational and portfolio purposes.
+This project was built by [Ansh Jain](https://linked.in/ansh--jain). Built for educational and portfolio purposes.
 
 ## 🧑‍💻 Author
 
