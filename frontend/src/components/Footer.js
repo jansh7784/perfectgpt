@@ -118,86 +118,73 @@ const Footer = () => {
           </div>
         </div>
         
-       {/* Bottom Footer - Single Line with All Elements */}
-<div className="border-t border-gray-200 dark:border-gray-700 py-6">
-  <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
-    {/* Copyright */}
-    <div className="flex items-center space-x-4">
-      <p className="text-sm text-gray-500 dark:text-gray-400">
-        © {currentYear} Fake ChatGPT Generator. All rights reserved.
-      </p>
-      <span className="text-gray-300 dark:text-gray-600">|</span>
-      <p className="text-xs text-gray-400 dark:text-gray-500">
-        Made with ❤️ for Educators & Creators
-      </p>
-      <span className="text-gray-300 dark:text-gray-600">|</span>
-      <a
-        href="https://www.linkedin.com/in/ansh--jain" 
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-xs text-blue-500 hover:underline"
-      >
-        by Ansh Jain
-      </a>
-    </div>
-  </div>
-</div>
-
-            
-            {/* Legal Links - Single Line */}
-            <div className="flex items-center space-x-1 text-sm">
-              <Link
-                to="/terms"
-                className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                Terms of Service
-              </Link>
-              <span className="text-gray-300 dark:text-gray-600">•</span>
-              <Link
-                to="/privacy"
-                className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                Privacy Policy
-              </Link>
-              <span className="text-gray-300 dark:text-gray-600">•</span>
-              <Link
-                to="/cookie-policy"
-                className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                Cookie Policy
-              </Link>
-              <span className="text-gray-300 dark:text-gray-600">•</span>
-              <Link
-                to="/sitemap"
-                className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                Sitemap
-              </Link>
-            </div>
-            
-            {/* Social & Quick Actions */}
-            <div className="flex items-center space-x-3">
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
-                title="Back to top"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                </svg>
-              </button>
-              <span className="text-gray-300 dark:text-gray-600">|</span>
+        {/* Bottom Footer - All Elements in One Line */}
+        <div className="border-t border-gray-200 dark:border-gray-700 py-6">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-2 text-sm">
+            <span className="text-gray-500 dark:text-gray-400">
+              © {currentYear} Fake ChatGPT Generator. All rights reserved.
+            </span>
+            <span className="text-gray-300 dark:text-gray-600">|</span>
+            <span className="text-gray-400 dark:text-gray-500 flex items-center gap-1">
+              Made with <span aria-label="love" role="img">❤️</span> by
               <a
-                href="mailto:support@fakechatgpt.com"
-                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-xs"
-                title="Contact us"
+                href="https://www.linkedin.com/in/ansh--jain"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-1 text-blue-500 hover:underline"
               >
-                📧 Support
+                Ansh Jain
               </a>
-            </div>
+            </span>
+            <span className="text-gray-300 dark:text-gray-600">|</span>
+            <Link
+              to="/terms"
+              className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-1 py-0.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              Terms of Service
+            </Link>
+            <span className="text-gray-300 dark:text-gray-600">•</span>
+            <Link
+              to="/privacy"
+              className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-1 py-0.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-gray-300 dark:text-gray-600">•</span>
+            <Link
+              to="/cookie-policy"
+              className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-1 py-0.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              Cookie Policy
+            </Link>
+            <span className="text-gray-300 dark:text-gray-600">•</span>
+            <Link
+              to="/sitemap"
+              className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-1 py-0.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              Sitemap
+            </Link>
+            <span className="text-gray-300 dark:text-gray-600">|</span>
+            <a
+              href="mailto:support@fakechatgpt.com"
+              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-xs"
+              title="Contact us"
+            >
+              📧 Support
+            </a>
+            <span className="text-gray-300 dark:text-gray-600">|</span>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+              title="Back to top"
+            >
+              <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+              </svg>
+            </button>
           </div>
         </div>
-        
+
         {/* SEO & Legal Disclaimer */}
         <div className="border-t border-gray-200 dark:border-gray-700 py-4">
           <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
@@ -221,30 +208,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-      
-      {/* Schema.org Structured Data for SEO */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebApplication",
-          "name": "Fake ChatGPT Conversation Generator",
-          "description": "Create realistic fake ChatGPT conversation screenshots instantly. Professional tool for educators, content creators, and marketers.",
-          "url": window.location.origin,
-          "applicationCategory": "EducationalApplication",
-          "operatingSystem": "Web Browser",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          },
-          "author": {
-            "@type": "Organization",
-            "name": "Fake ChatGPT Generator"
-          },
-          "keywords": ["fake chatgpt", "chatgpt conversation generator", "ai conversation creator", "chatgpt screenshot", "educational tools"]
-        })}
-      </script>
     </footer>
   );
 };
