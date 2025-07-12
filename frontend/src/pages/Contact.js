@@ -209,7 +209,7 @@ const Contact = () => {
                 </h3>
               </div>
               <p className="text-yellow-700 dark:text-yellow-300 text-sm">
-                For DMCA takedown notices or other legal matters, please email us directly at fakechatgptsite@gmail.com with "Legal" in the subject line.
+                For DMCA takedown notices or other legal matters, please email us directly at anshjain@ieee.org with "Legal" in the subject line.
               </p>
             </div>
           </div>
