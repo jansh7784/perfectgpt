@@ -221,6 +221,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+    </footer>
       
       {/* Schema.org Structured Data for SEO */}
       <script type="application/ld+json">
